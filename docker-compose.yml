@@ -1,0 +1,30 @@
+services:
+  mssql: 
+    build:
+      context: ./mssql
+      dockerfile: dockerfile
+    ports:
+
+    networks:
+      - testnet
+    restart: unless-stopped
+
+  csharp:
+    build:
+      context: ./csharp
+      dockerfile: dockerfile
+
+  asp_entity: 
+    build:
+      context: ./asp_entity
+      dockerfile: dockerfile
+    ports:
+      - 7293:7293
+      - 5177:5177
+    networks:
+      - testnet
+    restart: unless-stopped
+    
+networks:
+  testnet:
+    driver: bridge
