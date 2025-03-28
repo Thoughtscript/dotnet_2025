@@ -11,7 +11,7 @@ namespace Main
     {
         static void Main(string[] args)
         {
-                Terminal.Run(); 
+                //Terminal.Run(); 
 
                 // The Namespace above is omitted
                 Language.Namespaces.NamespaceA.NamespaceB.NestedNamespaceClass.ExampleA();

@@ -1,6 +1,3 @@
 FROM mcr.microsoft.com/mssql/server:2022-latest
 
-RUN echo "Creating working dir and copying files"
-RUN mkdir /app
-WORKDIR /app
-COPY . .
+COPY init_sql.sql /docker-entrypoint-initdb.d/

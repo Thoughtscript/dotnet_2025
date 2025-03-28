@@ -1,6 +1,5 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using src.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace src.Controllers;
 
@@ -31,5 +30,16 @@ public class ExampleController : Controller
         };
 
         return Ok(response);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> SqlExamplesAsync()
+    {
+
+        using (var context = new ApplicationDbContext())
+        {
+            var examples = await context.Examples.ToListAsync();
+            return Ok(examples);
+        }
     }
 }

@@ -14,7 +14,8 @@ docker compose up
 
 > **Warning**: the default configuration is configured for local non-containerized use.
 
-1. Tweak the SSL settings in [appsettings.json](./asp_entity/src/appsettings.json). (`https` -> `http`) This is a TODO.
+1. Tweak the SSL settings in [appsettings.json](./asp_entity/src/appsettings.json) if required. (`https` -> `http`) 
+   * Adding `RUN dotnet dev-certs https` [here](./asp_entity/dockerfile) will automatically generate and associate a Dev SSL cert usable from *within* the Container.
 2. Comment out **Line 14** in [](./csharp/src/Program.cs) - **.NET** Console input within a Docker Container will error out. 
    * It can be run by Exec'ing into the Docker Container thereafter (and uncommenting out that line).
 
@@ -53,27 +54,35 @@ dotnet run
     * `"Urls": "https://0.0.0.0:5177"`
     * Should bind to `localhost`.
     * Can view at: https://localhost:5177
-    * SSL can be set there too.
+    * SSL can be set there too using: `dotnet dev-certs https` within the same Docker Image.
 3. Controllers [automatically append](./asp_entity/src/Controllers/ExampleController.cs) their Handler names as subpaths (quite handy).
 4. Controllers using [IActionResult](https://medium.com/@dilanlakshitha194/understanding-iactionresult-in-net-core-simplifying-http-response-handling-1e406e22dbcc) and the relevant helper method (`Ok()`, `NotFound()`, etc.) will automatically [serialize data](https://learn.microsoft.com/en-us/aspnet/core/web-api/advanced/formatting?view=aspnetcore-9.0) into JSON.
 5. https://medium.com/@nwonahr/working-with-json-data-in-asp-net-core-web-api-fbc4f0ee39c4
 
 Views and Endpoints:
-* Simple String/Text Response -> http://localhost:5177/Example/SimpleString
-* Automatic JSON Serialization -> http://localhost:5177/Example/JsonResponse
-* Default Home -> http://localhost:5177/
-* Prebuilt Context Path Example -> http://localhost:5177/Home/Privacy
+* Simple String/Text Response -> https://localhost:5177/Example/SimpleString
+* Automatic JSON Serialization -> https://localhost:5177/Example/JsonResponse
+* Default Home -> https://localhost:5177/
+* Prebuilt Context Path Example -> https://localhost:5177/Home/Privacy
+* SQL Response -> https://localhost:5177/Example/SqlExamplesAsync
 
 ### Entity Framework
 
 [![](https://img.shields.io/badge/Entity-Framework-purple.svg)](https://learn.microsoft.com/en-us/ef/) 
 
-
 ### MSSQL
 
 [![](https://img.shields.io/badge/MSSQL-2022-blue.svg)](https://hub.docker.com/r/microsoft/mssql-server)
 
+1. To execute commands within the Container appears to require using **Windows PowerShell**: `docker exec -u root -it <MY_CONTAINER_ID> "bash"`
+      * If you Exec in through Docker Desktop the default user is set to `mssql` not `root` and you won't have permission to execute: `/opt/mssql-tools18/bin/sqlcmd`
+      * If you attempt to Exec in through Bash (in a new Terminal aside from Docker Desktop), the following error will appear: `the input device is not a TTY.  If you are using mintty, try prefixing the command with 'winpty'
+` from using Bash on a Windows machine.
+      * Run the following command from a new Windows PowerShell Terminal instead: `/opt/mssql-tools18/bin/sqlcmd -U sa -P FD83wr9DF_*9pke89 -S localhost -No` as described [here](https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-docker-container-deployment?view=sql-server-ver16&pivots=cs1-bash#tools-inside-the-container). (The `-No` flag bypasses local HTTPS auth.)
+1. `docker-entrypoint-initdb.d` isn't supported within the Docker Container but I've kept the convention for familiarity's sake.
+      * Execute: `/opt/mssql-tools18/bin/sqlcmd -U sa -P FD83wr9DF_*9pke89 -S localhost -No -i docker-entrypoint-initdb.d/init_sql.sql` to run the initial scripts.
 
+> https://learn.microsoft.com/en-us/sql/sql-server/?view=sql-server-ver16
 
 ## Resources and Links
 
@@ -90,6 +99,9 @@ Views and Endpoints:
 11. https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/delegates/
 12. https://dev.to/waelhabbal/the-right-way-to-check-for-null-in-c-6gf
 13. https://github.com/ggagnaux/CSharp-Publisher-Subscriber-Demo/blob/master/PublisherSubscriberDemo/Publisher.cs
+14. https://learn.microsoft.com/en-us/sql/sql-server/?view=sql-server-ver16
+15. https://learn.microsoft.com/en-us/ef/core/
+16. https://github.com/grpm98/pisofinderapi/blob/f114d5860c60267a05ccfd8ed41c162ce8e51224/Data/PisoFinderContext.cs
 
 Some prior examples of mine:
 
