@@ -5,4 +5,4 @@ RUN mkdir /app
 WORKDIR /app
 COPY . .
 
-CMD []
+CMD ["bash", "run.sh"]

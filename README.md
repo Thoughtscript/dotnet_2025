@@ -31,6 +31,8 @@ dotnet run
 
 [![](https://img.shields.io/badge/C%23-13-purple.svg)](https://learn.microsoft.com/en-us/dotnet/csharp/?WT.mc_id=dotnet-35129-website) [![](https://img.shields.io/badge/.NET-9.0-blue.svg)](https://learn.microsoft.com/en-us/aspnet/core/?view=aspnetcore-9.0) 
 
+1. Autogenerate most boiler-plate using [dotnet new console --language "C#"](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-new).
+
 ### ASP.NET
 
 [![](https://img.shields.io/badge/ASP.NET-9.0.3-purple.svg)](mcr.microsoft.com/dotnet/aspnet:9.0.3)
@@ -39,7 +41,7 @@ dotnet run
 
 > Much easier now to launch a basic app!
 
-1. Autogenerate most boiler-plate using `dotnet new ...`.
+1. Autogenerate most boiler-plate using [dotnet new mvc --language "C#"](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-new).
 2. Port binding can be set in [appsettings.json](./asp_entity/src/appsettings.json) `Urls`.
     * `"Urls": "https://0.0.0.0:5177"`
     * Should bind to `localhost`.
@@ -73,6 +75,14 @@ Views and Endpoints:
 3. https://hub.docker.com/r/microsoft/mssql-server
 4. https://medium.com/@dilanlakshitha194/understanding-iactionresult-in-net-core-simplifying-http-response-handling-1e406e22dbcc
 5. https://learn.microsoft.com/en-us/aspnet/core/web-api/advanced/formatting?view=aspnetcore-9.0
+6. https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-new
+7. https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/statements-expressions-operators/equality-comparisons
+8. https://learn.microsoft.com/en-us/dotnet/standard/exceptions/exception-class-and-properties
+9. https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/events/
+10. https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/properties
+11. https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/delegates/
+12. https://dev.to/waelhabbal/the-right-way-to-check-for-null-in-c-6gf
+13. https://github.com/ggagnaux/CSharp-Publisher-Subscriber-Demo/blob/master/PublisherSubscriberDemo/Publisher.cs
 
 Some prior examples of mine:
 

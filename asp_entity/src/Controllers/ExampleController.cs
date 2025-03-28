@@ -14,7 +14,7 @@ public class ExampleController : Controller
     }
 
     // Automatic sub-path
-    // GET: /ExampleControler/SimpleString
+    // GET: /Example/SimpleString
     public string SimpleString()
     {
         return "Simple String response...";

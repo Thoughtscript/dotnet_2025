@@ -19,7 +19,6 @@ services:
       context: ./asp_entity
       dockerfile: dockerfile
     ports:
-      - 7293:7293
       - 5177:5177
     networks:
       - testnet
