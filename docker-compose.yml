@@ -1,13 +1,13 @@
 services:
-  mssql: 
-    build:
-      context: ./mssql
-      dockerfile: dockerfile
-    ports:
+  # mssql: 
+  #   build:
+  #     context: ./mssql
+  #     dockerfile: dockerfile
+  #   ports:
 
-    networks:
-      - testnet
-    restart: unless-stopped
+  #   networks:
+  #     - testnet
+  #   restart: unless-stopped
 
   csharp:
     build:

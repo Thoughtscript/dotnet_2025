@@ -2,7 +2,7 @@
 
 [![](https://img.shields.io/badge/ASP.NET-9.0.3-purple.svg)](https://learn.microsoft.com/en-us/aspnet/core/?view=aspnetcore-9.0)
 [![](https://img.shields.io/badge/MSSQL-2022-blue.svg)](https://hub.docker.com/r/microsoft/mssql-server)
-[![](https://img.shields.io/badge/.NET-9.0-blue.svg)](https://learn.microsoft.com/en-us/dotnet/?WT.mc_id=dotnet-35129-website) 
+[![](https://img.shields.io/badge/.NET-9.0-blue.svg)](https://dotnet.microsoft.com/en-us/download/dotnet/9.0) 
 [![](https://img.shields.io/badge/Docker-blue.svg)](https://www.docker.com/) 
 
 ## Set Up and Use
@@ -11,6 +11,12 @@
 ```bash
 docker compose up
 ```
+
+> **Warning**: the default configuration is configured for local non-containerized use.
+
+1. Tweak the SSL settings in [appsettings.json](./asp_entity/src/appsettings.json). (`https` -> `http`) This is a TODO.
+2. Comment out **Line 14** in [](./csharp/src/Program.cs) - **.NET** Console input within a Docker Container will error out. 
+   * It can be run by Exec'ing into the Docker Container thereafter (and uncommenting out that line).
 
 **Visual Studio Code**:
 1. Install the [C# Dev Kit](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit)
@@ -29,13 +35,14 @@ dotnet run
 
 ### C#
 
-[![](https://img.shields.io/badge/C%23-13-purple.svg)](https://learn.microsoft.com/en-us/dotnet/csharp/?WT.mc_id=dotnet-35129-website) [![](https://img.shields.io/badge/.NET-9.0-blue.svg)](https://learn.microsoft.com/en-us/aspnet/core/?view=aspnetcore-9.0) 
+[![](https://img.shields.io/badge/C%23-13-purple.svg)](https://learn.microsoft.com/en-us/dotnet/csharp/?WT.mc_id=dotnet-35129-website) [![](https://img.shields.io/badge/.NET-9.0-blue.svg)](https://dotnet.microsoft.com/en-us/download/dotnet/9.0) 
 
 1. Autogenerate most boiler-plate using [dotnet new console --language "C#"](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-new).
+2. [C# 13+](csharp/src/language/) examples.
 
 ### ASP.NET
 
-[![](https://img.shields.io/badge/ASP.NET-9.0.3-purple.svg)](mcr.microsoft.com/dotnet/aspnet:9.0.3)
+[![](https://img.shields.io/badge/ASP.NET-9.0.3-purple.svg)](https://learn.microsoft.com/en-us/aspnet/core/?view=aspnetcore-9.0)
 
 *Refresh for `ASP.NET 9.0.3`* 
 
