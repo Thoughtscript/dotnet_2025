@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using src.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +10,7 @@ builder.Services.AddControllersWithViews();
 Console.WriteLine($"Initializing Database with Connection String: {builder.Configuration.GetConnectionString("MSSQL_DOCKER_CONNECTION_STRING")}");
 
 // Retry on error: https://learn.microsoft.com/en-us/ef/core/dbcontext-configuration/#configuring-the-database-provider
-builder.Services.AddDbContext<ApplicationDbContext>(
+builder.Services.AddDbContext<ApplicationDatabaseContext>(
     opsBuilder => opsBuilder.UseSqlServer(
         builder.Configuration.GetConnectionString("MSSQL_DOCKER_CONNECTION_STRING"),
         providerOpts => { providerOpts.EnableRetryOnFailure(); }));

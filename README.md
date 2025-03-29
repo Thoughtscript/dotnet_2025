@@ -64,11 +64,13 @@ Views and Endpoints:
 * Automatic JSON Serialization -> https://localhost:5177/Example/JsonResponse
 * Default Home -> https://localhost:5177/
 * Prebuilt Context Path Example -> https://localhost:5177/Home/Privacy
-* SQL Response -> https://localhost:5177/Example/SqlExamplesAsync
+* Asynchronous SQL Response -> https://localhost:5177/Example/SqlExamples
 
 ### Entity Framework
 
 [![](https://img.shields.io/badge/Entity-Framework-purple.svg)](https://learn.microsoft.com/en-us/ef/) 
+
+1. Changes to [Connection String](https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-7.0/breaking-changes?tabs=v7) require `TrustServerCertificate=True` or `Encrypt=False` for basic Docker dev testing.
 
 ### MSSQL
 
@@ -102,6 +104,8 @@ Views and Endpoints:
 14. https://learn.microsoft.com/en-us/sql/sql-server/?view=sql-server-ver16
 15. https://learn.microsoft.com/en-us/ef/core/
 16. https://github.com/grpm98/pisofinderapi/blob/f114d5860c60267a05ccfd8ed41c162ce8e51224/Data/PisoFinderContext.cs
+17. https://github.com/adamajammary/simple-web-app-mvc-dotnet/blob/master/SimpleWebAppMVC/Controllers/TasksApiController.cs
+18. https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-7.0/breaking-changes?tabs=v7
 
 Some prior examples of mine:
 

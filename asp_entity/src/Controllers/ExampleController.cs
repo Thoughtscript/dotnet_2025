@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using src.Database;
 
 namespace src.Controllers;
 
@@ -7,9 +8,12 @@ public class ExampleController : Controller
 {
     private readonly ILogger<HomeController> _logger;
 
-    public ExampleController(ILogger<HomeController> logger)
+    private readonly ApplicationDatabaseContext _db;
+
+    public ExampleController(ILogger<HomeController> logger, ApplicationDatabaseContext ctx)
     {
         _logger = logger;
+        _db = ctx;
     }
 
     // Automatic sub-path
@@ -32,14 +36,12 @@ public class ExampleController : Controller
         return Ok(response);
     }
 
+    // Helpful: https://github.com/adamajammary/simple-web-app-mvc-dotnet/blob/master/SimpleWebAppMVC/Controllers/TasksApiController.cs
     [HttpGet]
-    public async Task<IActionResult> SqlExamplesAsync()
+    public async Task<IActionResult> SqlExamples()
     {
-
-        using (var context = new ApplicationDbContext())
-        {
-            var examples = await context.Examples.ToListAsync();
-            return Ok(examples);
-        }
+        Console.WriteLine($"Database can connect? {this._db.Database.CanConnect()}");
+        var examples = await this._db.Example.ToListAsync();
+        return Ok(examples);
     }
 }
