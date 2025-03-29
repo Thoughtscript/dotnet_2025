@@ -76,11 +76,11 @@ Views and Endpoints:
 
 1. To execute commands within the Container appears to require using **Windows PowerShell**: `docker exec -u root -it <MY_CONTAINER_ID> "bash"`
       * If you Exec in through Docker Desktop the default user is set to `mssql` not `root` and you won't have permission to execute: `/opt/mssql-tools18/bin/sqlcmd`
-      * If you attempt to Exec in through Bash (in a new Terminal aside from Docker Desktop), the following error will appear: `the input device is not a TTY.  If you are using mintty, try prefixing the command with 'winpty'
-` from using Bash on a Windows machine.
+      * If you attempt to Exec in through Bash (in a new Terminal aside from Docker Desktop), the following error will appear: `the input device is not a TTY.  If you are using mintty, try prefixing the command with 'winpty'` from using Bash on a Windows machine (apparently).
       * Run the following command from a new Windows PowerShell Terminal instead: `/opt/mssql-tools18/bin/sqlcmd -U sa -P FD83wr9DF_*9pke89 -S localhost -No` as described [here](https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-docker-container-deployment?view=sql-server-ver16&pivots=cs1-bash#tools-inside-the-container). (The `-No` flag bypasses local HTTPS auth.)
 1. `docker-entrypoint-initdb.d` isn't supported within the Docker Container but I've kept the convention for familiarity's sake.
       * Execute: `/opt/mssql-tools18/bin/sqlcmd -U sa -P FD83wr9DF_*9pke89 -S localhost -No -i docker-entrypoint-initdb.d/init_sql.sql` to run the initial scripts.
+      * Since initialization doesn't happen immediately, I've added `sleep 120` to the [Bash script](./asp_entity/run.sh).
 
 > https://learn.microsoft.com/en-us/sql/sql-server/?view=sql-server-ver16
 

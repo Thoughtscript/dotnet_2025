@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-cd src && dotnet run &
+sleep 120 & cd src && dotnet run &
 
 wait
