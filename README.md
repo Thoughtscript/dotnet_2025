@@ -74,6 +74,8 @@ Views and Endpoints:
 
 ### MSSQL
 
+> Exercise in PowerShell and MSSQL admin.
+
 [![](https://img.shields.io/badge/MSSQL-2022-blue.svg)](https://hub.docker.com/r/microsoft/mssql-server)
 
 1. To execute commands within the Container appears to require using **Windows PowerShell**: `docker exec -u root -it <MY_CONTAINER_ID> "bash"`
